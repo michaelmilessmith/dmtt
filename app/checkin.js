@@ -11,3 +11,9 @@ exports.performCheckin = function(id){
     checkins.insert({'id': id, 'timeStamp': Date.now()});
   }
 }
+
+exports.getLastCheckinTime = function(id){
+  var checkins = db.getCollection('checkins');
+  var current = checkins.findOne({'id': id});
+  return current ? current.timeStamp : null ;
+}
