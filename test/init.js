@@ -2,14 +2,17 @@ var loki = require('lokijs'),
     expect = require("chai").expect,
     init = require("../app/init");
 
-describe("Initialise the storage", function(){
-  var db = init.db;
-  it("creates in memory storage collections", function(){
-    init.initialiseStorage();
-    var switches = db.getCollection('switches');
-    var pings = db.getCollection('pings');
+describe("Initialisation", function(){
+  describe("#initialiseStorage()", function(){
 
-    expect(switches).to.exist;
-    expect(pings).to.exist;
+    var db = init.db;
+    it("creates in memory storage collections", function(){
+      init.initialiseStorage();
+      var switches = db.getCollection('switches');
+      var checkins = db.getCollection('checkins');
+
+      expect(switches).to.exist;
+      expect(checkins).to.exist;
+    });
   });
 });
