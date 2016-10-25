@@ -23,6 +23,13 @@ describe("pulseChecker", function(){
         expect(result).to.be.true;
       });
 
+      it("returns false if the id does not exist", function(){
+        var result = pulseChecker.checkPulse('pulseChecker_none');
+
+        expect(result).to.exist;
+        expect(result).to.be.false;
+      });
+
       it("returns false if the checkin is outside the switch limit", function(){
         var result = pulseChecker.checkPulse('pulseChecker_0');
 
