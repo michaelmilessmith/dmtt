@@ -15,4 +15,5 @@ describe("Initialisation", function(){
       expect(checkins).to.exist;
     });
   });
+
 });

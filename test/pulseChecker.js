@@ -9,22 +9,22 @@ var db = init.db;
 init.initialiseStorage();
 
 describe("pulseChecker", function(){
-  deadManSwitch.addSwitch('12345_pulseChecker', 1);
-  checkin.performCheckin('12345_pulseChecker');
-  deadManSwitch.addSwitch('abcde_pulseChecker', 0);
-  checkin.performCheckin('abcde_pulseChecker');
+  deadManSwitch.addSwitch('pulseChecker_1', 1);
+  checkin.createCheckin('pulseChecker_1');
+  deadManSwitch.addSwitch('pulseChecker_0', 0);
+  checkin.createCheckin('pulseChecker_0');
   describe("checkPulse(id)", function(){
     describe("checks the checkins against the switches limit for a record", function(){
 
       it("returns true if the checkin is within the switch limit", function(){
-        var result = pulseChecker.checkPulse('12345_pulseChecker');
+        var result = pulseChecker.checkPulse('pulseChecker_1');
 
         expect(result).to.exist;
         expect(result).to.be.true;
       });
 
-      it("returns true if the checkin is within the switch limit", function(){
-        var result = pulseChecker.checkPulse('abcde_pulseChecker');
+      it("returns false if the checkin is outside the switch limit", function(){
+        var result = pulseChecker.checkPulse('pulseChecker_0');
 
         expect(result).to.exist;
         expect(result).to.be.false;

@@ -16,6 +16,7 @@ describe("Dead Man's Switch API", function() {
     var url = "http://localhost:3000/checkin?id=12345";
 
     it("returns status 200", function(done) {
+      checkin.createCheckin('12345');      
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
         var checkins = db.getCollection('checkins');
