@@ -18,17 +18,20 @@ describe("Initialisation", function(){
   describe("#startChecking(ids, interval, action)", function(){
 
     var db = init.db;
-    it("begins the process of checking the switches against checkins", function(){
+    it("begins the process of checking the switches against checkins", function(done){
       var triggered = false;
-      var startChecking = function(){
+      var flipSwitch = function(){
         triggered = true;
       }
       expect(triggered).to.be.false;
 
-      init.startChecking('startChecking',1,startChecking);
-      setTimeout(function() {
+      init.startChecking('startChecking', 100, flipSwitch);
+      this.timeout(1000);
+
+      setTimeout( function(){
         expect(triggered).to.be.true;
-      }, 100);
+        done();
+      }, 500);
     });
   });
 

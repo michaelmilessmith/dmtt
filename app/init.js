@@ -11,6 +11,9 @@ exports.initialiseStorage = function(){
 
 exports.startChecking = function(ids, interval, action){
   setInterval(function() {
+    var pulseChecker = require("./pulseChecker"),
+        checkin = require("./checkin");
+
     for (var i = 0, length = ids.length; i < length; i++ ){
       var result = pulseChecker.checkPulse(ids[i]);
       if(result){
