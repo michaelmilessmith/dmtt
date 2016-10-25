@@ -15,5 +15,21 @@ describe("Initialisation", function(){
       expect(checkins).to.exist;
     });
   });
+  describe("#startChecking(ids, interval, action)", function(){
+
+    var db = init.db;
+    it("begins the process of checking the switches against checkins", function(){
+      var triggered = false;
+      var startChecking = function(){
+        triggered = true;
+      }
+      expect(triggered).to.be.false;
+
+      init.startChecking('startChecking',1,startChecking);
+      setTimeout(function() {
+        expect(triggered).to.be.true;
+      }, 100);
+    });
+  });
 
 });
