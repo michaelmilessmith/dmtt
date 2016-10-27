@@ -1,6 +1,6 @@
 const loki = require('lokijs');
 
-const db = new loki('example.db');
+const db = new loki('loki.db');
 exports.db = db;
 
 
@@ -9,19 +9,15 @@ exports.initialiseStorage = function(){
   const checkins = db.addCollection('checkins');
 };
 
-exports.startChecking = function(ids, interval, action){
+exports.startChecking = function(switches, interval){
+  const pulseChecker = require("./pulseChecker");
   setInterval(function() {
-    const pulseChecker = require("./pulseChecker"),
-        checkin = require("./checkin");
+    for (let i = 0, length = switches.length; i < length; i++ ){
+      const result = pulseChecker.checkPulse(switches[i].id);
 
-    for (let i = 0, length = ids.length; i < length; i++ ){
-      const result = pulseChecker.checkPulse(ids[i]);
-      if(result){
-        console.log("Everything is fine with " + ids[i]);
-        console.log("Last checkin:" + checkin.getLastCheckinTime(ids[i]));
-      }
-      else{
-        action();
+      if(!result && !switches[i].triggered){
+        switches[i].action();
+        switches[i].triggered = true;
       }
     }
   }, interval);

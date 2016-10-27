@@ -24,8 +24,14 @@ describe("Initialisation", function(){
         triggered = true;
       }
       expect(triggered).to.be.false;
-
-      init.startChecking('startChecking', 100, flipSwitch);
+      const switches = [
+        {
+          id:'startChecking',
+          timeLimitMinutes: 1,
+          action: flipSwitch
+        }
+      ];
+      init.startChecking(switches, 100, flipSwitch);
       this.timeout(1000);
 
       setTimeout( function(){

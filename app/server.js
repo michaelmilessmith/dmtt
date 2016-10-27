@@ -8,10 +8,17 @@ const express = require("express"),
 
 const db = init.db;
 init.initialiseStorage();
-deadManSwitch.addSwitch('qwerty', 5);
-checkin.createCheckin('qwerty');
-init.startChecking(['qwerty'], 1000);
 
+const switches = require("./switchesConfig").switches;
+
+for (let i = 0, length = switches.length; i < length; i++)
+{
+  const s = switches[i];
+  s.triggered = false;
+  deadManSwitch.addSwitch(s.id, s.timeLimitMinutes);
+  checkin.createCheckin(s.id);
+}
+init.startChecking(switches, 1000);
 
 app.get("/checkin", function(req, res) {
   const id = req.query.id;
