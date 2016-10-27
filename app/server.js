@@ -1,4 +1,4 @@
-var express = require("express"),
+const express = require("express"),
     app = express(),
     checkin = require("./checkin"),
     init = require("./init"),
@@ -6,7 +6,7 @@ var express = require("express"),
     deadManSwitch = require("./switch"),
     pulseChecker = require("./pulseChecker");
 
-var db = init.db;
+const db = init.db;
 init.initialiseStorage();
 deadManSwitch.addSwitch('qwerty', 5);
 checkin.createCheckin('qwerty');
@@ -14,7 +14,7 @@ init.startChecking(['qwerty'], 1000);
 
 
 app.get("/checkin", function(req, res) {
-  var id = req.query.id;
+  const id = req.query.id;
   checkin.performCheckin(id);
   res.sendStatus(200);
 });

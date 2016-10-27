@@ -1,9 +1,9 @@
-var loki = require('lokijs'),
+const loki = require('lokijs'),
     db = require("./init").db;
 
 exports.addSwitch = function(id, limitMinutes){
-  var switches = db.getCollection('switches');
-  var current = switches.findOne({'id': id});
+  const switches = db.getCollection('switches');
+  const current = switches.findOne({'id': id});
   if (current){
     current.timeLimitMinutes = Date.now();
     switches.update(current);
@@ -13,7 +13,7 @@ exports.addSwitch = function(id, limitMinutes){
 }
 
 exports.getSwitchLimit = function(id){
-  var switches = db.getCollection('switches');
-  var current = switches.findOne({'id': id});
+  const switches = db.getCollection('switches');
+  const current = switches.findOne({'id': id});
   return current ? current.timeLimitMinutes : null ;
 }
