@@ -1,0 +1,26 @@
+{
+  "name": "dmtt",
+  "version": "0.0.1",
+  "description": "A dead man's switch service",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmilessmith/dmtt.git"
+  },
+  "author": "Michael Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelmilessmith/dmtt/issues"
+  },
+  "homepage": "https://github.com/michaelmilessmith/dmtt#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "lokijs": "^1.4.1",
+    "mocha": "^3.1.2",
+    "request": "^2.75.0"
+  }
+}
